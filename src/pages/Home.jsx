@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <div>
         <NavBar/>
-        <Container maxWidth="xg">
+        <Container maxWidth="false">
           <PokemonCard/>
         </Container>
     </div>
