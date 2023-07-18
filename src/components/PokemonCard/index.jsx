@@ -6,13 +6,28 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function PokemonCard({name, image}) {
+export default function PokemonCard({ name, image, types }) {
+
+  const typeHandler = () => {
+    if (types.length > 1) {
+      var typesString = '';
+      types.forEach((type) => {
+        typesString += type.type.name + (type.slot === 1 ? ' | ' : '');
+      });
+      return typesString;
+    }
+    return types[0].type.name;
+  }
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" image={image} title="green iguana" />
+      <CardMedia component="img" image={image} title="green iguana" height="200" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {name}
+        </Typography>
+        <Typography gutterBottom variant="caption" component="div">
+          {typeHandler()}
         </Typography>
         {/* <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000
