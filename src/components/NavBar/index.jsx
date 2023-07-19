@@ -51,13 +51,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const isMobile = window.screen.width < 600;
+
 export default function NavBar({ pokemonFilter }) {
   return (
     <Box sx={{ flexGrow: 1, marginBottom: "2em" }}>
       <AppBar position="static" sx={{ backgroundColor: 'black' }}>
         <Toolbar>
           <Box display="flex" justifyContent="space-between" width="100%">
-            <Box component="img" src="/assets/pokemon-logo.png" height="3em" />
+            {!isMobile &&
+              <Box component="img" src="/assets/pokemon-logo.png" height="3em" />
+            }
             <Search onChange={(e) => pokemonFilter(e.target.value)}>
               <SearchIconWrapper>
                 <SearchIcon />
