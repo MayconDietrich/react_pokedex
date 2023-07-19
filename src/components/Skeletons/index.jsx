@@ -1,17 +1,18 @@
-import { Skeleton } from '@mui/material';
-import { Container } from "@mui/system";
+import { Grid, Skeleton } from '@mui/material';
 import React from 'react';
 
 export const Skeletons = () => {
   return (
-    <Container maxwidht="xxl" display="flex" flexdirextion="row">
-      <Skeleton variant="rectangular" animation="wave" width={300} height={300} sx={{ marginBottom: '1em' }} />
-      <Skeleton variant="rectangular" animation="wave" width={300} height={300} sx={{ marginBottom: '1em' }} />
-      <Skeleton variant="rectangular" animation="wave" width={300} height={300} sx={{ marginBottom: '1em' }} />
-      <Skeleton variant="rectangular" animation="wave" width={300} height={300} sx={{ marginBottom: '1em' }} />
-      <Skeleton variant="rectangular" animation="wave" width={300} height={300} sx={{ marginBottom: '1em' }} />
-      <Skeleton variant="rectangular" animation="wave" width={300} height={300} sx={{ marginBottom: '1em' }} />
-    </Container>
+    <>
+      <Grid container spacing={3}>
+        {Array(20).fill(1)
+          .map((card, key) => (
+            <Grid item xs={12} sm={6} md={3} lg={2} key={key}>
+              <Skeleton variant="rounded" animation="wave" height={290} />
+            </Grid>
+          ))}
+      </Grid>
+    </>
   )
 
 }
