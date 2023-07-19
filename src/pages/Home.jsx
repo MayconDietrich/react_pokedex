@@ -38,9 +38,14 @@ export const Home = () => {
       <NavBar pokemonFilter={pokemonFilter} />
       <Container maxWidth="false">
         <Grid container spacing={3}>
-          {true ? <Skeletons /> :
+          {pokemon.length === 0 ? <Skeletons /> :
             pokemon.map((pkm, key) =>
-              <Grid item xs={12} sm={6} md={3} lg={2} key={key}>
+              <Grid item xs={12} sm={6} md={3} lg={2} key={key}  sx={{
+                width: '100vw',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+          }}>
                 <PokemonCard name={pkm.data.name} image={pkm.data.sprites.front_default} types={pkm.data.types} />
               </Grid>
             )
