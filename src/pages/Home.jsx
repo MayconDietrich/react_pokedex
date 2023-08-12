@@ -19,22 +19,22 @@ export const Home = ({ setPokemonData }) => {
     for (let i = 1; i <= 151; i++) {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     }
-    axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => setPokemon(res));
+    axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => {
+      setPokemon(res);
+      setFilteredPokemon(res);
+    });
   }
 
-  const pokemonFilter = (name) => {
-    var filteredPokemon = [];
-    if (name === '') {
-      getPokemon();
-      return;
-    }
-    for (var i in pokemon) {
-      if (pokemon[i].data.name.includes(name.toLowerCase())) {
-        filteredPokemon.push(pokemon[i]);
-      }
-    }
-    setPokemon(filteredPokemon);
-  }
+  const [filteredPokemon, setFilteredPokemon] = new useState(pokemon);
+
+  const pokemonFilter = (event) => {
+    const query = event;
+    var updatedList = [...pokemon];
+    updatedList = updatedList.filter((item) => {
+      return item.data.name.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+    setFilteredPokemon(updatedList);
+  };
 
   const pokemonPickHandler = (pkmData) => {
     setPokemonData(pkmData);
@@ -47,7 +47,7 @@ export const Home = ({ setPokemonData }) => {
       <Container maxWidth="false">
         <Grid container spacing={3}>
           {pokemon.length === 0 ? <Skeletons /> :
-            pokemon.map((pkm, key) =>
+            filteredPokemon.map((pkm, key) =>
               <Grid item xs={12} sm={6} md={3} lg={2} key={key} sx={{
                 width: '100vw',
                 display: 'flex',
