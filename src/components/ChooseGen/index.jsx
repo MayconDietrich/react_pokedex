@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Style.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { Card, CardActionArea, CardMedia, Container, Grid } from '@mui/material';
 
 export default function ChooseGen({ getPokemon }) {
   const generations = {
