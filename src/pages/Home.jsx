@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
 import PokemonCard from '../components/PokemonCard'
 import { Box, Container, Grid } from '@mui/material'
 import axios from 'axios'
 import { Skeletons } from '../components/Skeletons'
 import { useNavigate } from 'react-router-dom'
+import ChooseGen from '../components/ChooseGen'
 
 export const Home = ({ setPokemonData }) => {
   const [pokemon, setPokemon] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getPokemon();
-  }, []);
+  const getPokemon = (generation) => {
+    console.log("🚀 ~ file: Home.jsx:19 ~ getPokemon ~ generation:", generation)
 
-  const getPokemon = () => {
     var endpoints = [];
-    for (let i = 1; i <= 151; i++) {
+    var start = generation[1][0];
+    var end = generation[1][1];
+    console.log(start, end);
+    for (let i = start; i <= end; i++) {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     }
     axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => {
@@ -24,6 +26,7 @@ export const Home = ({ setPokemonData }) => {
       setFilteredPokemon(res);
     });
   }
+
 
   const [filteredPokemon, setFilteredPokemon] = new useState(pokemon);
 
@@ -42,26 +45,30 @@ export const Home = ({ setPokemonData }) => {
   }
 
   return (
-    <div>
-      <NavBar pokemonFilter={pokemonFilter} />
-      <Container maxWidth="false">
-        <Grid container spacing={3}>
-          {pokemon.length === 0 ? <Skeletons /> :
-            filteredPokemon.map((pkm, key) =>
-              <Grid item xs={12} sm={6} md={3} lg={2} key={key} sx={{
-                width: '100vw',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <Box onClick={() => pokemonPickHandler(pkm.data)} sx={{ cursor: 'pointer' }}>
-                  <PokemonCard name={pkm.data.name} image={pkm.data.sprites.front_default} types={pkm.data.types} />
-                </Box>
-              </Grid>
-            )
-          }
-        </Grid>
-      </Container>
-    </div>
+    <>
+      {pokemon.length <= 0 ? <ChooseGen getPokemon={getPokemon} /> :
+        <>
+          <NavBar pokemonFilter={pokemonFilter} />
+          <Container maxWidth="false">
+            <Grid container spacing={3}>
+              {pokemon.length === 0 ? <Skeletons /> :
+                filteredPokemon.map((pkm, key) =>
+                  <Grid item xs={12} sm={6} md={3} lg={2} key={key} sx={{
+                    width: '100vw',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <Box onClick={() => pokemonPickHandler(pkm.data)} sx={{ cursor: 'pointer' }}>
+                      <PokemonCard name={pkm.data.name} image={pkm.data.sprites.front_default} types={pkm.data.types} />
+                    </Box>
+                  </Grid>
+                )
+              }
+            </Grid>
+          </Container>
+        </>
+      }
+    </>
   )
 }
