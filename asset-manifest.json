@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-pokedex-maycon/static/css/main.9c985535.css",
-    "main.js": "/react-pokedex-maycon/static/js/main.de012da6.js",
-    "static/js/787.7e0b23c5.chunk.js": "/react-pokedex-maycon/static/js/787.7e0b23c5.chunk.js",
-    "index.html": "/react-pokedex-maycon/index.html",
-    "main.9c985535.css.map": "/react-pokedex-maycon/static/css/main.9c985535.css.map",
-    "main.de012da6.js.map": "/react-pokedex-maycon/static/js/main.de012da6.js.map",
-    "787.7e0b23c5.chunk.js.map": "/react-pokedex-maycon/static/js/787.7e0b23c5.chunk.js.map"
+    "main.css": "/github-page/static/css/main.44bc798a.css",
+    "main.js": "/github-page/static/js/main.d17db7ab.js",
+    "static/js/787.7e0b23c5.chunk.js": "/github-page/static/js/787.7e0b23c5.chunk.js",
+    "index.html": "/github-page/index.html",
+    "main.44bc798a.css.map": "/github-page/static/css/main.44bc798a.css.map",
+    "main.d17db7ab.js.map": "/github-page/static/js/main.d17db7ab.js.map",
+    "787.7e0b23c5.chunk.js.map": "/github-page/static/js/787.7e0b23c5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c985535.css",
-    "static/js/main.de012da6.js"
+    "static/css/main.44bc798a.css",
+    "static/js/main.d17db7ab.js"
   ]
 }
