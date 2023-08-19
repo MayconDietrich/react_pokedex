@@ -15,8 +15,8 @@ export const Home = ({ setPokemonData }) => {
     console.log("🚀 ~ file: Home.jsx:19 ~ getPokemon ~ generation:", generation)
 
     var endpoints = [];
-    var start = generation[1][0];
-    var end = generation[1][1];
+    var start = generation.start;
+    var end = generation.end;
     console.log(start, end);
     for (let i = start; i <= end; i++) {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
