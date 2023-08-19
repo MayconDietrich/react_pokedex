@@ -12,17 +12,13 @@ export const Home = ({ setPokemonData }) => {
   const navigate = useNavigate();
 
   const getPokemon = (generation) => {
-    console.log("🚀 ~ file: Home.jsx:19 ~ getPokemon ~ generation:", generation)
-
     var endpoints = [];
     var start = generation.start;
     var end = generation.end;
-    console.log(start, end);
     for (let i = start; i <= end; i++) {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     }
     axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => {
-      console.log("🚀 ~ file: Home.jsx:25 ~ axios.all ~ res:", res)
       setPokemon(res);
       setFilteredPokemon(res);
     });
