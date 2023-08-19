@@ -5,31 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { typeHandler } from '../../utils';
+import { typeColor, typeHandler } from '../../utils';
 import { Box } from '@mui/material';
 
 export default function PokemonCard({ name, image, types, pokedexNumber }) {
-  const mainType = types[0].type.name;
-  const colours = {
-    normal: '#A8A77A',
-    fire: '#EE8130',
-    water: '#6390F0',
-    electric: '#F7D02C',
-    grass: '#7AC74C',
-    ice: '#96D9D6',
-    fighting: '#C22E28',
-    poison: '#A33EA1',
-    ground: '#E2BF65',
-    flying: '#A98FF3',
-    psychic: '#F95587',
-    bug: '#A6B91A',
-    rock: '#B6A136',
-    ghost: '#735797',
-    dragon: '#6F35FC',
-    dark: '#705746',
-    steel: '#B7B7CE',
-    fairy: '#D685AD',
-  };
+  const mainTypeColor = typeColor(types[0].type.name);
 
   return (
     <Card sx={{
@@ -37,17 +17,15 @@ export default function PokemonCard({ name, image, types, pokedexNumber }) {
       height: '150px',
       display: 'flex',
       flexDirection: 'row-reverse',
-      backgroundColor: colours[mainType],
+      backgroundColor: mainTypeColor,
       justifyContent: 'space-around',
-      boxShadow: `${colours[mainType] + 'b0'} 0px 8px 24px`,
+      boxShadow: `${mainTypeColor + 'b0'} 0px 8px 24px`,
       backgroundImage: `url("assets/pokeball.png")`,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '125% -35%;',
     }} >
       <CardMedia component="img" image={image} title={name}
         sx={{ width: 150, height: 150 }} />
-      {/* <CardMedia component="img" src='assets/pokeball.png' title={name}
-        sx={{ width: 70, height: 70, position: 'relative', left: '0px' }} /> */}
       <CardContent>
         <Typography variant="caption">
           #{pokedexNumber}
