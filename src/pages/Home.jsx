@@ -22,6 +22,7 @@ export const Home = ({ setPokemonData }) => {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     }
     axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then((res) => {
+      console.log("🚀 ~ file: Home.jsx:25 ~ axios.all ~ res:", res)
       setPokemon(res);
       setFilteredPokemon(res);
     });
@@ -49,18 +50,19 @@ export const Home = ({ setPokemonData }) => {
       {pokemon.length <= 0 ? <ChooseGen getPokemon={getPokemon} /> :
         <>
           <NavBar pokemonFilter={pokemonFilter} />
-          <Container maxWidth="false">
+          <Container maxWidth="false" sx={{ marginBottom: '2rem' }}>
             <Grid container spacing={3}>
               {pokemon.length === 0 ? <Skeletons /> :
                 filteredPokemon.map((pkm, key) =>
-                  <Grid item xs={12} sm={6} md={3} lg={2} key={key} sx={{
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={key} sx={{
                     width: '100vw',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
                     <Box onClick={() => pokemonPickHandler(pkm.data)} sx={{ cursor: 'pointer' }}>
-                      <PokemonCard name={pkm.data.name} image={pkm.data.sprites.front_default} types={pkm.data.types} />
+                      <PokemonCard name={pkm.data.name} image={pkm.data.sprites.front_default} types={pkm.data.types}
+                        pokedexNumber={pkm.data.id} />
                     </Box>
                   </Grid>
                 )
