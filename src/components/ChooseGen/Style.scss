@@ -51,14 +51,11 @@ html {
 }
 
 .generationDetails {
-  position: absolute;
-  left: calc(50% - 400px);
-  top: calc(50% - 125px);
   background-color: #e8e8e8;
   display: flex;
   padding: 8px;
   border-radius: 10px;
-  width: 800px;
+  max-width: 800px;
   height: 250px;
   z-index: 10;
 }
@@ -68,30 +65,29 @@ html {
   margin: 28px 8px 0 16px;
 }
 
-.generationDetails button {
-  position: fixed;
-  float: inline-end;
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .closeBtn {
-  background-color: 'white';
-  position: "fixed";
+  color: #363b81;
   top: 0;
-  right: 0;
+  right: 10px;
   z-index: 2000;
+  position: fixed !important;
+  float: inline-end !important;
 }
 
-@media screen and (max-width: 525px) {
-  .generationDetails {
-    left: calc(50% - 125px);
-    top: calc(50% - 125px);
-    width: 250px;
-    height: 250px;
-  }
-
-  .generationDetails p {
-    display: none;
-  }
+.confirmBtn {
+  color: #363b81 !important;
+  background-color: 'white';
+  top: 220px;
+  right: 10px;
+  z-index: 2000;
+  position: fixed !important;
+  float: right !important;
 }
 
 .box {

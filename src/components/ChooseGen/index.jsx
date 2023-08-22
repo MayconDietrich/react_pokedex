@@ -117,24 +117,45 @@ export default function ChooseGen({ getPokemon }) {
       <AnimatePresence>
         {show && (
           <>
-            <div className="backdrop" onClick={() => setShow(!show)} />
-            <motion.div
-              className="generationDetails"
-              variants={variants}
-              animate={show ? "visible" : "hidden"}
-              exit={{ scale: 1, opacity: 0 }}
-            >
-              <motion.img className="genImg" src={`/assets/gens/gen${info.gen}.png`}></motion.img>
-              <p>Generation {info.description}</p>
-              <IconButton onClick={() => setShow(!show)} className="closeBtn" edge='start'>
-                <CloseIcon color="primary" />
-              </IconButton>
-              <ArrowForwardIcon sx={{ marginTop: '14rem' }} onClick={() => {
-                setSelectedGen(true)
-                setShow(false)
-                getPokemon(info)
-              }} />
-            </motion.div>
+            <div className="backdrop center" onClick={() => setShow(!show)}>
+              <motion.div
+                className="generationDetails"
+                variants={variants}
+                animate={show ? "visible" : "hidden"}
+                exit={{ scale: 1, opacity: 0 }}
+                sx={{
+                  width: {
+                    xs: '250px', md: '800px'
+                  }
+                }}
+              >
+                <motion.img className="genImg" src={`/assets/gens/gen${info.gen}.png`}
+                  onClick={() => {
+                    setSelectedGen(true)
+                    setShow(false)
+                    getPokemon(info)
+                  }}></motion.img>
+                <Box component='div' sx={{
+                  display: {
+                    xs: 'none', md: 'block'
+                  }
+                }}>
+                  <p>{info.description}</p>
+
+                  <IconButton onClick={() => setShow(!show)} className="closeBtn" edge='start'>
+                    <CloseIcon color="primary" />
+                  </IconButton>
+
+                  <Button variant="text" onClick={() => {
+                    setSelectedGen(true)
+                    setShow(false)
+                    getPokemon(info)
+                  }} className='confirmBtn'>
+                    Continue <ArrowForwardIcon />
+                  </Button>
+                </Box>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
